@@ -1,13 +1,25 @@
 import { ref, computed, Ref } from 'vue';
-import PostsRepositry, { IPost } from 'src/services/repositories/Posts';
+import PostsRepositry, {
+  IPost,
+  CreatePost,
+} from 'src/services/repositories/Posts';
 
 const usePosts = (post?: IPost) => {
+  const loading = ref(false);
   const postRepository = new PostsRepositry();
   const posts: Ref<IPost[]> = ref([]);
 
   const getPosts = async () => {
+    loading.value = true;
     const dbPosts = await postRepository.getPosts();
     posts.value = dbPosts;
+    loading.value = false;
+  };
+
+  const createPost = async (_post: CreatePost) => {
+    loading.value = true;
+    await postRepository.createPost(_post);
+    loading.value = false;
   };
 
   const getMainImage = computed(() => post?.images[0]);
@@ -17,6 +29,7 @@ const usePosts = (post?: IPost) => {
   const getLikes = computed(() => post?.likes);
 
   return {
+    loading,
     posts,
     getMainImage,
     getImages,
@@ -24,6 +37,7 @@ const usePosts = (post?: IPost) => {
     getUser,
     getLikes,
     getPosts,
+    createPost,
   };
 };
 

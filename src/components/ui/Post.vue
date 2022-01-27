@@ -1,12 +1,14 @@
 <template>
-  <q-card style="width: 100%">
+  <q-card style="width: 100%" flat>
     <q-card-section>
       <p class="q-mb-none text-weight-medium">{{ getUser }}</p>
       <p class="q-mb-none">{{ getPostDescription }}</p>
     </q-card-section>
     <q-img :src="getMainImage"></q-img>
-    <q-card-section>
-      <p>
+
+    <q-card-section class="row items-center">
+      <q-btn round flat icon="favorite_border" class="q-mr-sm"></q-btn>
+      <p class="q-mb-none">
         {{ $t('post.likeBy', { amount: getLikes?.likes }) }}
       </p>
     </q-card-section>

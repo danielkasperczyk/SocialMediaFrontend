@@ -16,7 +16,7 @@
           v-if="isLogged"
           icon="add"
           class="absolute-center"
-          @click="goTo('home')"
+          @click="$emit('showDialog')"
           size="lg"
           round
           color="primary"
@@ -44,6 +44,7 @@ import useAuth from 'src/composables/useAuth';
 
 export default defineComponent({
   name: 'TheFooter',
+  emits: ['showDialog'],
   setup() {
     const router = useRouter();
     const { isLogged } = useAuth();

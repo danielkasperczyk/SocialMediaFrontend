@@ -13,9 +13,12 @@ export default {
     username: 'Username',
     signIn: 'Sign in',
     login: 'Log in',
+    description: 'Description',
+    images: 'Images',
   },
 
   post: {
     likeBy: 'Liked by {amount} users',
+    add: 'Add Post',
   },
 };
